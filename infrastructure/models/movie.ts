@@ -1,12 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from "typeorm";
 import { v4 as uuidv4 } from "uuid"
 
-enum Categoria {
-  ACAO = "Ação",
-  AVENTURA = "Aventura",
-  ROMANCE = "Romance"
-}
-
 @Entity()
 export class Movie {
     @PrimaryGeneratedColumn()
@@ -27,7 +21,7 @@ export class Movie {
     @Column()
     views: number
 
-    @Column({type: 'enum', enum: Categoria})
+    @Column()
     category: string
 
     @BeforeInsert()
