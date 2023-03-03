@@ -1,10 +1,13 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { movies_services } from './services/movies.service';
+import { MovieService } from './services/movies.service';
 import { CreateMovie } from './http/dao/create-movie.dao';
 
 @Controller()
 export class AppController {
-  constructor(private readonly _s: movies_services) {}
+  private readonly _s: MovieService
+  constructor(s: MovieService) {
+    this._s = s;
+  }
 
 
   @Get()

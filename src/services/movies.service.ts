@@ -5,12 +5,13 @@ import { CreateMovie } from "src/http/dao/create-movie.dao";
 import { Injectable } from "@nestjs/common";
 
 @Injectable()
-export class movies_services {
-  constructor(private readonly _r: Repository<Movie>) { this._r = mysql_context.getRepository(Movie) }
+export class MovieService {
+  private readonly _r: Repository<Movie> = mysql_context.getRepository(Movie)
 
   async findMany(): Promise<Object> {
-    const movies: Movie[] = await this._r.find()
-    return { status: 200, movies: movies.map(( uuid, ...rest ) => rest)}
+    let movies: Movie[] = await this._r.find()
+    const moviesn = movies.map(( {uuid, ...rest} ) => rest )
+    return { status: 200, movies: moviesn }
   }
   async findOne(id: number): Promise<Object> {
     const movie: Movie = await this._r.findOne({ where: {id}})

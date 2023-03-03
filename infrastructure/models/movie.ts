@@ -26,6 +26,6 @@ export class Movie {
 
     @BeforeInsert()
     insertUuid() {
-      this.uuid = uuidv4().replace("-", "")
+      this.uuid = uuidv4().toString().replace("-", "")
     }
 }
